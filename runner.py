@@ -6,19 +6,13 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 sched = BlockingScheduler()
 
-USERNAME = ''
-PASSWORD = '' #MD5 HASH OF PASSWORD
-
 USERNAME = input("Type in your asianodds username: ")
 PASSWORD = input("Type in your password (MD5 hash of password): ")
 TELEGRAM_BOT_TOKEN = input("Type in your telegram bot token: ")
-
+telegram_userID = input("Type in your telegram userId that recieves the notifications")
 
 URL = ''
 TOKEN = ''
-
-telegram_userID = input("Type in your telegram userId that recieves the notifications")
-
 
 
 # If any substring in substrings is a substring in string, return true
