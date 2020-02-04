@@ -107,7 +107,11 @@ def runbot():
                 matchIds.append(game["MatchId"])
 
                 text = game["Home"] + " vs " + game["Away"] + " is just in!"
-                cmd = 'curl --data chat_id="' + telegram_userID + '" --data "text=' + text + '" "https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage" '
+                cmd = 'curl --data chat_id="456563394" --data "text=' + text + '" "https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage" '
+                os.system(cmd)
+                print("Sent notification")
+
+                cmd = 'curl --data chat_id="845105397" --data "text=' + text + '" "https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage" '
                 os.system(cmd)
                 print("Sent notification")
 
