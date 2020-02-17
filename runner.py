@@ -47,6 +47,7 @@ def setup():
     print(response.json())
 
     global TOKEN
+    global URL
 
     key = response.json()["Result"]["Key"]
     TOKEN = response.json()["Result"]["Token"]
@@ -114,7 +115,7 @@ def runbot():
                 matchIds.append(game["MatchId"])
 
                 text = game["Home"] + " vs " + game["Away"] + " is just in!"
-                
+
                 cmd = 'curl --data chat_id="456563394" --data "text=' + text + '" "https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage" '
                 os.system(cmd)
                 print("Sent notification")
