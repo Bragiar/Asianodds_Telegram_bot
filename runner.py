@@ -14,6 +14,13 @@ telegram_userID = input("Type in your telegram userId that recieves the notifica
 URL = ''
 TOKEN = ''
 
+USERNAME = input("Type in your asianodds username: ")
+PASSWORD = input("Type in your password (MD5 hash of password): ")
+TELEGRAM_BOT_TOKEN = input("Type in your telegram bot token: ")
+#telegram_userID = input("Type in your telegram userId that recieves the notifications")
+
+
+
 
 # If any substring in substrings is a substring in string, return true
 # else false
@@ -43,7 +50,7 @@ def setup():
 
     key = response.json()["Result"]["Key"]
     TOKEN = response.json()["Result"]["Token"]
-    URL = response.json()["Result"]["Url"] + "/Register"
+    URL = response.json()["Result"]["Url"]# + "/Register"
 
     headers = {
         'Accept': 'application/json',
@@ -55,7 +62,7 @@ def setup():
         ('username', USERNAME ),
     )
 
-    response = requests.get(URL, headers = headers, params = params)
+    response = requests.get(URL + "/Register", headers = headers, params = params)
 
     print("Authenticating")
     print(response.json())
@@ -76,11 +83,11 @@ def runbot():
         #('since', 1580259445000)
 
     )
-    url = 'https://webapitest.asianodds88.com/AsianOddsService/getMatches'
+    #url = 'https://webapitest.asianodds88.com/AsianOddsService/getMatches'
 
     matchIds = []
     leagues = ["reykjavik","iceland","ICELAND","REYKJAVIK","FOTBOLTI","fotbolti","FAXAFLOAMOT","FOTBOLTI.NET","FAXAFLOI"] # strings to match
-    response = requests.get(url,headers = headers, params = params)
+    response = requests.get(URL + "/getMatches",headers = headers, params = params)
     print("Fetched games")
     print(response.json())
     if response.json()["Code"] != -1 and response.json()["Result"] is None:
@@ -107,6 +114,7 @@ def runbot():
                 matchIds.append(game["MatchId"])
 
                 text = game["Home"] + " vs " + game["Away"] + " is just in!"
+                
                 cmd = 'curl --data chat_id="456563394" --data "text=' + text + '" "https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage" '
                 os.system(cmd)
                 print("Sent notification")
