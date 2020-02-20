@@ -101,7 +101,7 @@ def runbot():
     leagues = ["reykjavik","iceland","ICELAND","REYKJAVIK","FOTBOLTI","fotbolti","FAXAFLOAMOT","FOTBOLTI.NET","FAXAFLOI"] # strings to match
     response = requests.get(URL + "/getFeeds",headers = headers, params = params)
     print("Fetched games")
-    print(response.json())
+    #print(response.json())
     if response.json()["Code"] != -1 and response.json()["Result"] is None:
         matches = []
         print(response.json())
